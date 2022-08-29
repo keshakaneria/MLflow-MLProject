@@ -1,0 +1,6 @@
+- first arg is train.py
+- while giving a path it shouldnt have space or break in name -> give absolute while giving path
+- give string as parameter and not as path
+- whenever we run workflow, mlruns folder is created
+- model path needs to be different everytime we run
+- all entry points should be run with _get_or_run functions which checked if entry point is added or not
