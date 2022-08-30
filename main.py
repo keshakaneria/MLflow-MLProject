@@ -6,7 +6,7 @@ from mlflow.utils.logging_utils import eprint
 
 from mlflow.tracking.fluent import _get_experiment_id
 
-def _already_ran(entry_point_name, parameters, git_commit=None, experiment_id=None):
+def _already_ran(entry_point_name, parameters, experiment_id=None):
     """Best-effort detection of if a run with the given entrypoint name,
     parameters, and experiment id already ran. The run must have completed
     successfully and have at least the parameters provided.
@@ -44,12 +44,11 @@ def _already_ran(entry_point_name, parameters, git_commit=None, experiment_id=No
     eprint("-----------------No matching run has been found----------------")
     return None
 
-
 # TODO(aaron): This is not great because it doesn't account for:
 # - changes in code
 # - changes in dependant steps
-def _get_or_run(entrypoint, parameters, git_commit=None, use_cache=True):
-    existing_run = _already_ran(entrypoint, parameters, git_commit)
+def _get_or_run(entrypoint, parameters, use_cache=True):
+    existing_run = _already_ran(entrypoint, parameters)
     if use_cache and existing_run:
         print("Found existing run for entrypoint=%s and parameters=%s" % (entrypoint, parameters))
         return existing_run
@@ -59,15 +58,16 @@ def _get_or_run(entrypoint, parameters, git_commit=None, use_cache=True):
 
 def workflow():
     with mlflow.start_run() as active_run:
-        git_commit = None
         print("-----------------Entering Train Run!----------------")
-        train_run = _get_or_run("train", {"train_data_path": ".//train.csv"}, git_commit)
+        train_run = _get_or_run("train", {"train_data_path": ".//train.csv"})
         print("Train run = ", train_run)
         print("-----------------Entering Validate Run!----------------")
         validate_run = _get_or_run(
-            "validate", {"validate_data_path": ".//train.csv"}, git_commit
+            "validate", {"validate_data_path": ".//train.csv"}
         )
         print("Validate run = ", validate_run)
+        mlflow.log_metric("main-metric", 1000.00)
+        mlflow.log_metric("main-metric", 2000.00)
 
 if __name__ == "__main__":
     print("-----------------Entering workflow!----------------")

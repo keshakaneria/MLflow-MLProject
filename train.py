@@ -14,6 +14,7 @@ label = 'A'
 x = pd.read_csv(data_path)
 y = x.pop(label)
 
+mlflow.log_metric("train", 1000.00)
 model = RandomForestClassifier()
 model = rfc.fit(x,y)
 mlflow.sklearn.save_model(model, model_path)

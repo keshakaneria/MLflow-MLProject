@@ -1,6 +1,21 @@
-- first arg is train.py
+############## Entry points ##############
 - while giving a path it shouldnt have space or break in name -> give absolute while giving path
 - give string as parameter and not as path
-- whenever we run workflow, mlruns folder is created
-- model path needs to be different everytime we run
 - all entry points should be run with _get_or_run functions which checked if entry point is added or not
+
+
+############## Main.py ##############
+- first arg should be main.py
+- model path needs to be different everytime we run different independent entry point. If arguments are dependent, same model path is acceptable.
+
+
+############## Metrics ##############
+- same metric file can log multiple values
+- different metric file can log same values
+- Logs can be prepared from any file (*.py) and can be saved in metrics folder
+- Individual log metrics can be stored individually according to name of log folder
+
+
+############## Mlruns ##############
+- whenever we run workflow, mlruns folder is created
+- creates different folders to store for each entry point initially and single folder (for main entry point) for further runs

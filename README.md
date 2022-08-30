@@ -4,9 +4,9 @@ This MLproject aims to chain together multiple different MLflow runs which each 
 
 There are two steps to this workflow:
 
-- `**train.py**`: Trains the provided model and saves it in ``results`` folder.
+- `train.py`: Trains the provided model and saves it in ``results`` folder.
 
-- `**validate.py**`: Loads the trained model from train.py and validates the data by calculating the accuracy score.
+- `validate.py`: Loads the trained model from train.py and validates the data by calculating the accuracy score.
 
 While we can run each of these steps manually, here we have a driver run, defined as **main** (main.py). This run will run the steps in order passing the results of one to the next. Additionally, this run will attempt to determine if a sub-run has already been executed successfully with the same parameters and, if so, reuse the cached results.
 
