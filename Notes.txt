@@ -23,15 +23,3 @@
 
 ############## Registering ##########
 - Registering needs tracking url
-
-
-every component separate file
-different ways to fetch and register
-what all can we register, parameters
-
-run mlflow -> connect mysql phpmyadmin and mlflow ui
-phpmyadmin -> backend stores
-mlflow ui -> artifact stores
-
-connection of db and mlflow
-its display

@@ -9,6 +9,7 @@ data_path = sys.argv[1]
 print("Data path = ", data_path)
 model_path = sys.argv[2]
 print("Model path = ", model_path)
+
 rfc = RandomForestClassifier()
 
 print("Reading CSV")
